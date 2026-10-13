@@ -43,9 +43,12 @@ export default function Toolbar({
         <button
           key={label}
           onClick={action}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 text-sm text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-md transition-colors"
+          className="group flex items-center gap-1.5 px-2.5 py-1.5 text-sm font-medium text-neutral-400 hover:text-white bg-gradient-to-b from-neutral-800/30 to-neutral-900/50 hover:from-neutral-700/60 hover:to-neutral-800/80 border border-neutral-800/60 hover:border-neutral-700 rounded-md shadow-xs hover:shadow-md hover:shadow-black/30 transition-all duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
         >
-          <Icon size={14} />
+          <Icon
+            size={14}
+            className="transition-transform duration-200 group-hover:scale-110"
+          />
           <span>{label}</span>
         </button>
       ))}
