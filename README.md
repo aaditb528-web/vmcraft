@@ -1,6 +1,8 @@
 # VMCraft
 
 Run a real Linux VM in a browser tab. No installs and no servers.
+VMCraft is a browser-based x86 virtual machine emulator that lets you boot Linux and FreeDOS without installing an operating system or running a local VM.
+Built with Next.js and v86, VMCraft runs emulation client-side using JavaScript and WebAssembly. It supports multiple bootable operating-system images, VM controls, and machine-state export/import.
 
 **Live demo:** https://vmcraft-qa9luhp3g-me-e104.vercel.app/
 
