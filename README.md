@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VMCraft
 
-## Getting Started
+Run a real Linux VM in a browser tab. No installs and no servers.
 
-First, run the development server:
+**Live demo:** https://vmcraft-qa9luhp3g-me-e104.vercel.app/
+
+---
+
+## What it is
+
+VMCraft boots a full x86 machine inside a browser tab using [v86](https://github.com/copy/v86), a JavaScript/WebAssembly emulator. Everything — the CPU, RAM, disk, graphics — runs client-side on the visitor's hardware. There is no backend doing the work.
+
+You can boot into Linux or FreeDOS, type commands, and save the whole machine state as a file.
+
+## What it can run
+
+- **Linux (Buildroot)** — tiny bootable Linux, ~6 MB, boots in a few seconds
+- **FreeDOS** — DOS clone, boots to an `A:\>` prompt
+- **Damn Small Linux** — full X11 desktop with Firefox 2.0, taskbar, and window manager
+
+## How it works
+
+The interesting part is that there isn't one. The browser downloads a `.wasm` file (v86's x86 interpreter), a BIOS, and a bootable image. Everything else happens on the visitor's CPU.
+
+- `lib/v86Manager.ts` — wraps v86's API, handles starting/stopping/snapshotting the VM
+- `components/VirtualMachine.tsx` — mounts the screen, forwards keystrokes to the emulated keyboard
+- `components/Sidebar.tsx` — the OS picker
+- `components/Toolbar.tsx` — start / pause / reset / export / import
+
+## Running it locally
 
 ```bash
+git clone https://github.com/aaditb528-web/vmcraft.git
+cd vmcraft
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
